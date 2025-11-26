@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-blue: #0a2342;
+  --secondary-blue: #4a6fa5;
+  --accent-gold: #c9a66b;
+  --background-light: #f5f5f0;
+  --text-white: #ffffff;
+  --background: var(--background-light);
+  --foreground: var(--primary-blue);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
