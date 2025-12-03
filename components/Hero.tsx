@@ -3,10 +3,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import heroImage from "@/public/hero.png";
-import roomOne from "@/public/room1.png";
-import roomTwo from "@/public/room2.png";
-import kandy from "@/public/kandy.jpg";
 
 export default function Hero() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -20,7 +16,7 @@ export default function Hero() {
     <section className="relative overflow-hidden bg-gradient-to-br from-brand-primary via-brand-secondary to-brand-primary text-white">
       <div className="absolute inset-0">
         <Image
-          src={kandy}
+          src="/kandy.jpg"
           alt="Kandy skyline backdrop"
           fill
           priority
@@ -99,14 +95,14 @@ export default function Hero() {
         >
           <div className="absolute inset-0 bg-white/10 rounded-[36px] border border-white/30 shadow-[0_30px_80px_rgba(10,35,66,0.35)] overflow-hidden backdrop-blur-md">
             <Image
-              src={heroImage}
+              src="/room1.png"
               alt="Private suite with lush surroundings"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/45 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6 bg-white/90 rounded-2xl px-6 py-4 text-brand-primary shadow-lg">
               <div className="flex items-center justify-between gap-4">
                 <div>
@@ -124,7 +120,9 @@ export default function Hero() {
           </div>
 
           <div className="absolute -bottom-12 -left-4 w-40 sm:w-48 rounded-3xl border border-white/30 bg-white/90 shadow-xl overflow-hidden">
-            <Image src={roomOne} alt="Pool villa" className="h-32 w-full object-cover" />
+            <div className="relative h-32 w-full">
+              <Image src="/room1.png" alt="Pool villa" fill className="object-cover" />
+            </div>
             <div className="p-4 text-brand-primary">
               <p className="text-xs uppercase tracking-[0.35em] text-brand-secondary">
                 Pool Villa
@@ -134,7 +132,9 @@ export default function Hero() {
           </div>
 
           <div className="absolute -top-10 right-0 w-44 sm:w-52 rounded-3xl border border-white/30 bg-white/90 shadow-xl overflow-hidden">
-            <Image src={roomTwo} alt="Garden pavilion" className="h-32 w-full object-cover" />
+            <div className="relative h-32 w-full">
+              <Image src="/room2.png" alt="Garden pavilion" fill className="object-cover" />
+            </div>
             <div className="p-4 text-brand-primary">
               <p className="text-xs uppercase tracking-[0.35em] text-brand-secondary">
                 Garden Pavilion

@@ -59,21 +59,55 @@ export default function Navbar() {
               { label: "Home", href: "/" },
               { label: "Suites", href: `/rooms/${heroRoomSlug}` },
               { label: "Amenities", href: "/amenities" },
+              { label: "Events", href: "/#events-calendar", isAnchor: true },
               { label: "Booking", href: "/booking" },
               { label: "Contact", href: "/contact" },
-            ].map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className={`font-playfair font-medium transition-colors ${
-                  isScrolled
-                    ? "text-brand-primary hover:text-brand-secondary"
-                    : "text-white hover:text-brand-accent"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            ].map((link) => {
+              if (link.isAnchor) {
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (link.href.startsWith("/#")) {
+                        const hash = link.href.split("#")[1];
+                        // If we're on the home page, scroll to the section
+                        if (window.location.pathname === "/") {
+                          const element = document.getElementById(hash);
+                          if (element) {
+                            element.scrollIntoView({ behavior: "smooth", block: "start" });
+                          }
+                        } else {
+                          // If we're on another page, navigate to home with hash
+                          window.location.href = link.href;
+                        }
+                      }
+                    }}
+                    className={`font-playfair font-medium transition-colors ${
+                      isScrolled
+                        ? "text-brand-primary hover:text-brand-secondary"
+                        : "text-white hover:text-brand-accent"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              }
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className={`font-playfair font-medium transition-colors ${
+                    isScrolled
+                      ? "text-brand-primary hover:text-brand-secondary"
+                      : "text-white hover:text-brand-accent"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Desktop Book Now Button */}
@@ -147,22 +181,57 @@ export default function Navbar() {
               { label: "Home", href: "/" },
               { label: "Suites", href: `/rooms/${heroRoomSlug}` },
               { label: "Amenities", href: "/amenities" },
+              { label: "Events", href: "/#events-calendar", isAnchor: true },
               { label: "Booking", href: "/booking" },
               { label: "Contact", href: "/contact" },
-            ].map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-4 py-2 font-playfair font-medium transition-colors ${
-                  isScrolled
-                    ? "text-brand-primary hover:text-brand-secondary hover:bg-brand-accent/10"
-                    : "text-white hover:text-brand-accent hover:bg-brand-secondary"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            ].map((link) => {
+              if (link.isAnchor) {
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsMobileMenuOpen(false);
+                      if (link.href.startsWith("/#")) {
+                        const hash = link.href.split("#")[1];
+                        // If we're on the home page, scroll to the section
+                        if (window.location.pathname === "/") {
+                          const element = document.getElementById(hash);
+                          if (element) {
+                            element.scrollIntoView({ behavior: "smooth", block: "start" });
+                          }
+                        } else {
+                          // If we're on another page, navigate to home first
+                          window.location.href = link.href;
+                        }
+                      }
+                    }}
+                    className={`block px-4 py-2 font-playfair font-medium transition-colors ${
+                      isScrolled
+                        ? "text-brand-primary hover:text-brand-secondary hover:bg-brand-accent/10"
+                        : "text-white hover:text-brand-accent hover:bg-brand-secondary"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              }
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block px-4 py-2 font-playfair font-medium transition-colors ${
+                    isScrolled
+                      ? "text-brand-primary hover:text-brand-secondary hover:bg-brand-accent/10"
+                      : "text-white hover:text-brand-accent hover:bg-brand-secondary"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
             <div className="px-4 pt-2">
               <Link
                 href="/booking"
