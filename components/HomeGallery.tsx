@@ -114,7 +114,7 @@ export default function HomeGallery() {
             transition={{ delay: 0.2 }}
             className="hidden md:block max-w-md text-gray-600 font-playfair text-lg text-right italic"
           >
-            "Every frame tells a story of heritage, healing, and hilltop peace."
+            &quot;Every frame tells a story of heritage, healing, and hilltop peace.&quot;
           </motion.p>
         </div>
 
