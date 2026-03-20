@@ -73,9 +73,9 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.65 }}
           >
             {[
-              { label: "Suites & Villas", value: "25" },
-              { label: "Private Pools", value: "08" },
-              { label: "Curated Moments", value: "40+" },
+              { label: "Suites & Villas", value: "01" },
+              { label: "Private Pools", value: "01" },
+              { label: "Curated Moments", value: "10+" },
             ].map((stat) => (
               <div key={stat.label} className="bg-white/10 rounded-2xl p-4 backdrop-blur-md">
                 <p className="text-2xl font-playfair font-semibold">{stat.value}</p>
@@ -95,7 +95,7 @@ export default function Hero() {
         >
           <div className="absolute inset-0 bg-white/10 rounded-[36px] border border-white/30 shadow-[0_30px_80px_rgba(10,35,66,0.35)] overflow-hidden backdrop-blur-md">
             <Image
-              src="/room1.png"
+              src="/room1.jpeg"
               alt="Private suite with lush surroundings"
               fill
               priority
@@ -109,9 +109,12 @@ export default function Hero() {
                   <p className="text-xs uppercase tracking-[0.35em] text-brand-secondary mb-1">
                     Featured Villa
                   </p>
-                  <p className="text-2xl font-playfair">Emerald Grand Suite</p>
+                  <p className="text-2xl font-playfair">Green Breeze Villa</p>
                 </div>
-                <p className="text-sm font-semibold">From $899 / night</p>
+                <div className="text-right">
+                  <p className="text-sm font-semibold text-brand-primary">Rs 9,500 <span className="text-xs font-normal">/ night (2 Guests)</span></p>
+                  <p className="text-sm font-semibold text-brand-primary mt-1">Rs 20,000 <span className="text-xs font-normal">/ night (Full Villa + Breakfast)</span></p>
+                </div>
               </div>
               <p className="text-sm text-brand-primary/80 mt-2">
                 Infinity lap pool • Butler pantry • Sunrise terrace yoga
@@ -119,27 +122,27 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="absolute -bottom-12 -left-4 w-40 sm:w-48 rounded-3xl border border-white/30 bg-white/90 shadow-xl overflow-hidden">
-            <div className="relative h-32 w-full">
-              <Image src="/room1.png" alt="Pool villa" fill className="object-cover" />
+          <div className="absolute top-[45%] sm:top-1/2 -translate-y-1/2 -left-4 sm:-left-10 w-36 sm:w-48 rounded-3xl border border-white/30 bg-white/90 shadow-xl overflow-hidden z-20">
+            <div className="relative h-28 sm:h-32 w-full">
+              <Image src="/pool.jpeg" alt="Pool villa" fill className="object-cover" />
             </div>
-            <div className="p-4 text-brand-primary">
-              <p className="text-xs uppercase tracking-[0.35em] text-brand-secondary">
+            <div className="p-3 sm:p-4 text-brand-primary">
+              <p className="text-[10px] sm:text-xs uppercase tracking-[0.35em] text-brand-secondary">
                 Pool Villa
               </p>
-              <p className="text-sm font-playfair">Private plunge & BBQ deck</p>
+              <p className="text-xs sm:text-sm font-playfair font-semibold">Private plunge & BBQ space</p>
             </div>
           </div>
 
-          <div className="absolute -top-10 right-0 w-44 sm:w-52 rounded-3xl border border-white/30 bg-white/90 shadow-xl overflow-hidden">
-            <div className="relative h-32 w-full">
-              <Image src="/room2.png" alt="Garden pavilion" fill className="object-cover" />
+          <div className="absolute -top-6 sm:-top-10 right-2 sm:-right-8 w-36 sm:w-48 rounded-3xl border border-white/30 bg-white/90 shadow-xl overflow-hidden z-20">
+            <div className="relative h-28 sm:h-32 w-full">
+              <Image src="/garden.jpeg" alt="Garden pavilion" fill className="object-cover" />
             </div>
-            <div className="p-4 text-brand-primary">
-              <p className="text-xs uppercase tracking-[0.35em] text-brand-secondary">
+            <div className="p-3 sm:p-4 text-brand-primary">
+              <p className="text-[10px] sm:text-xs uppercase tracking-[0.35em] text-brand-secondary">
                 Garden Pavilion
               </p>
-              <p className="text-sm font-playfair">Alfresco dining rituals</p>
+              <p className="text-xs sm:text-sm font-playfair font-semibold">Alfresco dining rituals</p>
             </div>
           </div>
         </motion.div>

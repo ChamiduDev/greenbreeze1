@@ -5,20 +5,20 @@ import { motion } from "framer-motion";
 
 const rooms = [
   {
-    name: "Emerald Grand Suite",
+    name: "Couple's Retreat (2 Guests)",
     description:
-      "1,600 sq. ft. of curated luxury with a private plunge pool, bespoke minibar, and handcrafted teak interiors.",
-    price: "From $899/night",
-    image: "/room1.png",
-    amenities: ["Private Plunge Pool", "Air-Conditioned Suites", "Garden BBQ Pavilion"],
+      "A serene and romantic getaway for two. Enjoy the luxurious master suite with absolute privacy, sharing access to the pristine plunge pool and garden pavilions.",
+    price: "Rs 9,500 / night",
+    image: "/room2.jpeg",
+    amenities: ["Master Suite", "Private Plunge Pool", "Garden BBQ Access"],
   },
   {
-    name: "Tropical Villa Residence",
+    name: "Full Villa Exclusive",
     description:
-      "A serene two-bedroom hideaway with butler service, alfresco dining pavilion, and rainforest views.",
-    price: "From $1,250/night",
-    image: "/room2.png",
-    amenities: ["Dedicated Butler", "Alfresco Pavilion", "Rainforest Outlook"],
+      "Reserve the entirety of Green Breeze Villa for your family or group. Experience ultimate privacy, exclusive use of all suites, the pool, and the alfresco dining area.",
+    price: "Rs 20,000 / night (Breakfast Inc.)",
+    image: "/room3.jpeg",
+    amenities: ["Breakfast Included", "Exclusive Access", "All Suites & Pool"],
   },
 ];
 
@@ -53,9 +53,8 @@ export default function Rooms() {
           {rooms.map((room, index) => (
             <motion.div
               key={room.name}
-              className={`flex flex-col lg:flex-row ${
-                index % 2 !== 0 ? "lg:flex-row-reverse" : ""
-              } items-stretch gap-8`}
+              className={`flex flex-col lg:flex-row ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""
+                } items-stretch gap-8`}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

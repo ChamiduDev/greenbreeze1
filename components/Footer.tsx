@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const quickLinks = ["About Us", "Rooms", "Amenities", "Dining", "Contact"];
 const experiences = [
-  "Sunset Yacht Cruises",
+
   "Private Pool Evenings",
   "Garden BBQ Tables",
   "Cultural Excursions",
@@ -74,7 +74,7 @@ export default function Footer() {
               <h4 className="uppercase tracking-[0.3em] text-sm text-brand-accent mb-3">
                 Reservations
               </h4>
-              <p className="font-playfair text-lg">+1 (555) 123-4567</p>
+              <p className="font-playfair text-lg">+94 74 269 2494</p>
               <p className="text-brand-white font-playfair">
                 stay@greenbreezevilla.com
               </p>
@@ -84,7 +84,7 @@ export default function Footer() {
                 Visit Us
               </h4>
               <p className="font-playfair text-white/80">
-                123 Villa Road,kandy, Sri lanka
+                Jayanthi road ,pallemulla, Halloluwa
               </p>
             </div>
             <div className="flex gap-3">

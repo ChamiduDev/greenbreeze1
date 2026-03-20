@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const contacts = [
   {
     label: "Concierge",
-    value: "+1 (555) 987-6543",
+    value: "+94 74 269 2494",
     detail: "Available 24/7 via call or WhatsApp",
   },
   {

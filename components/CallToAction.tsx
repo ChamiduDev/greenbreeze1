@@ -75,7 +75,7 @@ export default function CallToAction() {
           {[
             {
               label: "Concierge",
-              value: "+1 (555) 987-6543",
+              value: "+94 74 269 2494",
             },
             {
               label: "Reservations",
@@ -83,7 +83,7 @@ export default function CallToAction() {
             },
             {
               label: "Location",
-              value: "123 Villa Road, Kandy",
+              value: "Jayanthi road ,pallemulla, Halloluwa",
             },
           ].map((item) => (
             <div
