@@ -5,36 +5,43 @@ import { motion } from "framer-motion";
 
 export default function ContactPage() {
   return (
-    <main className="bg-gradient-to-b from-brand-sand via-brand-white to-brand-sand">
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 text-center space-y-6">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="uppercase tracking-[0.5em] text-xs text-brand-secondary"
-        >
-          Concierge Collective
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-5xl font-playfair text-brand-primary"
-        >
-          We design every stay around you
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg text-gray-600 font-playfair"
-        >
-          Share your ideal dates, celebrations, or inspirations—our concierge
-          will reply with bespoke recommendations within hours.
-        </motion.p>
+    <main className="bg-brand-sand min-h-screen">
+      <section className="relative overflow-hidden bg-gradient-to-br from-brand-primary via-brand-secondary to-brand-primary text-white pt-32 pb-24">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/2 h-64 w-64 -translate-x-1/2 bg-brand-secondary/20 blur-3xl" />
+          <div className="absolute bottom-0 right-0 h-80 w-80 translate-x-1/3 translate-y-1/3 bg-brand-secondary/15 blur-3xl" />
+        </div>
+
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="uppercase tracking-[0.5em] text-xs text-brand-accent font-semibold"
+          >
+            Concierge Collective
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-6xl font-playfair font-bold mb-6"
+          >
+            We design every stay around you
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg text-brand-white font-playfair max-w-3xl mx-auto"
+          >
+            Share your ideal dates, celebrations, or inspirations—our concierge
+            will reply with bespoke recommendations within hours.
+          </motion.p>
+        </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-12">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 pb-24 relative z-20 space-y-12">
         <ContactInfo />
 
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
@@ -122,7 +129,7 @@ export default function ContactPage() {
             </div>
             <div className="space-y-3 text-brand-white">
               <p>Check-in from 3pm • Late departures hosted at our private lounge</p>
-              <p>WhatsApp Concierge: +1 (555) 987-6543</p>
+              <p>WhatsApp Concierge: +94 74 269 2494</p>
             </div>
           </div>
         </div>

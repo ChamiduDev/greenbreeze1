@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import Hero from "@/components/Hero";
 import WhyChoose from "@/components/WhyChoose";
 import Rooms from "@/components/Rooms";
+import KandyExploration from "@/components/KandyExploration";
+import HomeGallery from "@/components/HomeGallery";
 import KandyEventsCalendar from "@/components/KandyEventsCalendar";
 import CallToAction from "@/components/CallToAction";
 
@@ -16,7 +18,7 @@ export default function Home() {
         setTimeout(() => {
           const element = document.getElementById(hash);
           if (element) {
-            const offset = 80; // Account for fixed navbar
+            const offset = 80;
             const elementPosition = element.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -33,17 +35,27 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-brand-sand to-brand-white">
+    <main className="min-h-screen bg-white">
+      {/* 1. Hero & Welcome */}
       <Hero />
 
+      {/* 2. Value Prop */}
       <WhyChoose />
 
+      {/* 3. Our Signature Rooms (User priority 1) */}
       <Rooms />
 
+      {/* 4. Gallery (User priority 2) */}
+      <HomeGallery />
+
+      {/* 5. Things to See and Do (User priority 3) */}
+      <KandyExploration />
+
+      {/* 6. Events Calendar (User priority 4) */}
       <KandyEventsCalendar />
 
+      {/* 7. Final Call to Action */}
       <CallToAction />
     </main>
   );
 }
-

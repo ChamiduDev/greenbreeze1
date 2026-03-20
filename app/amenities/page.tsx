@@ -5,54 +5,69 @@ import { motion } from "framer-motion";
 
 const amenities = [
   {
-    title: "Private Pool Sanctuaries",
+    title: "Large Swimming Pool",
     description:
-      "Temperature-controlled plunge pools with submerged loungers, underwater lighting, and refreshments delivered on cue.",
-    image: "/hero.png",
+      "Take a dip in our clean and cool swimming pool. It is perfect for a morning swim or a relaxing afternoon with your family.",
+    image: "/pool.jpeg",
     bullets: [
-      "Heated basalt pools with mosaic tiling",
-      "Shade cabanas with ceiling fans",
-      "Dedicated attendant for poolside tastings",
+      "Clean water for all guests",
+      "Resting chairs by the pool",
+      "Beautiful hillside views",
     ],
   },
   {
-    title: "Climate-Controlled Suites",
+    title: "Fire Area & BBQ",
     description:
-      "Air-conditioned villas with hand-carved screens, blackout drapery, and curated scent menus for perfect rest.",
-    image: "/room1.png",
+      "Enjoy a warm fire at night and have a fun BBQ with your family and friends. We provide everything you need.",
+    image: "/2.jpeg",
     bullets: [
-      "Dual-zone climate controls",
-      "Nighttime turndown with cooling linens",
-      "Soundproof glass with rainforest views",
+      "Warm fire for night chats",
+      "BBQ grill for tasty food",
+      "Plenty of seating for everyone",
     ],
   },
   {
-    title: "Garden BBQ Evenings",
+    title: "Fish Therapy Pool",
     description:
-      "Chef-led grill experiences set among frangipani courtyards, complete with live fire demonstrations and mixology pairings.",
-    image: "/room2.png",
+      "Relax your feet in our special fish therapy pool. It is a natural and fun way to feel refreshed and happy.",
+    image: "/6.jpeg",
     bullets: [
-      "Custom marinades & tasting menus",
-      "Private pitmaster and sommelier",
-      "Starlit dining lounges with live acoustics",
+      "Natural and calm setting",
+      "Fun for the whole family",
+      "Included with your stay",
+    ],
+  },
+  {
+    title: "Comfortable Bedrooms",
+    description:
+      "Each bedroom has an attached bathroom with a hot water facility. Enjoy free WiFi and a TV in every room.",
+    image: "/room3.jpeg",
+    bullets: [
+      "Soft beds for a good sleep",
+      "Hot and cold water",
+      "Free WiFi and TV",
+      "Attached private bathrooms",
     ],
   },
 ];
 
 export default function AmenitiesPage() {
   return (
-    <main className="bg-gradient-to-b from-brand-sand via-brand-white to-brand-sand">
-      <section className="relative overflow-hidden py-28 text-center">
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-primary" />
-        <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_center,_rgba(16,185,129,0.45),_transparent_60%)]" />
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 text-white">
+    <main className="bg-brand-sand min-h-screen">
+      <section className="relative overflow-hidden bg-gradient-to-br from-brand-primary via-brand-secondary to-brand-primary text-white pt-32 pb-24">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/2 h-64 w-64 -translate-x-1/2 bg-brand-secondary/20 blur-3xl" />
+          <div className="absolute bottom-0 right-0 h-80 w-80 translate-x-1/3 translate-y-1/3 bg-brand-secondary/15 blur-3xl" />
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="uppercase tracking-[0.5em] text-xs sm:text-sm text-brand-accent"
           >
-            Beyond Amenities
+            Villa Facilities
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -60,7 +75,7 @@ export default function AmenitiesPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl font-playfair"
           >
-            Curated experiences for every sense
+            Great things you can do here
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -68,8 +83,7 @@ export default function AmenitiesPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-brand-white font-playfair"
           >
-            From sunrise meditations to starlit gastronomy, our concierge
-            orchestrates every moment with artistry.
+            Enjoy our facilities made for your comfort and fun. We have everything you need for a peaceful stay.
           </motion.p>
         </div>
       </section>
@@ -78,9 +92,8 @@ export default function AmenitiesPage() {
         {amenities.map((amenity, index) => (
           <motion.div
             key={amenity.title}
-            className={`grid gap-8 lg:grid-cols-2 items-center ${
-              index % 2 !== 0 ? "lg:grid-flow-col-dense" : ""
-            }`}
+            className={`grid gap-8 lg:grid-cols-2 items-center ${index % 2 !== 0 ? "lg:grid-flow-col-dense" : ""
+              }`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

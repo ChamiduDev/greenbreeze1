@@ -146,7 +146,7 @@ export default function KandyEventsCalendar({
 
       <div className="relative max-w-6xl mx-auto">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

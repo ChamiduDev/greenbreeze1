@@ -1,26 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
-
-const rooms = [
-  {
-    name: "Couple's Retreat (2 Guests)",
-    description:
-      "A serene and romantic getaway for two. Enjoy the luxurious master suite with absolute privacy, sharing access to the pristine plunge pool and garden pavilions.",
-    price: "Rs 9,500 / night",
-    image: "/room2.jpeg",
-    amenities: ["Master Suite", "Private Plunge Pool", "Garden BBQ Access"],
-  },
-  {
-    name: "Full Villa Exclusive",
-    description:
-      "Reserve the entirety of Green Breeze Villa for your family or group. Experience ultimate privacy, exclusive use of all suites, the pool, and the alfresco dining area.",
-    price: "Rs 20,000 / night (Breakfast Inc.)",
-    image: "/room3.jpeg",
-    amenities: ["Breakfast Included", "Exclusive Access", "All Suites & Pool"],
-  },
-];
+import { rooms } from "@/data/rooms";
 
 export default function Rooms() {
   return (
@@ -52,7 +35,7 @@ export default function Rooms() {
         <div className="space-y-12">
           {rooms.map((room, index) => (
             <motion.div
-              key={room.name}
+              key={room.slug}
               className={`flex flex-col lg:flex-row ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""
                 } items-stretch gap-8`}
               initial={{ opacity: 0, y: 40 }}
@@ -62,12 +45,12 @@ export default function Rooms() {
             >
               <div className="relative lg:w-1/2 h-[320px] sm:h-[400px] lg:h-[460px] rounded-[32px] overflow-hidden shadow-[0_25px_60px_rgba(12,79,56,0.25)]">
                 <Image
-                  src={room.image}
+                  src={room.images[0]}
                   alt={room.name}
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  priority
+                  priority={index === 0}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 <div className="absolute top-6 left-6 px-4 py-2 rounded-full bg-white/80 text-brand-primary font-playfair text-sm tracking-[0.2em] uppercase">
@@ -83,12 +66,12 @@ export default function Rooms() {
                   <h3 className="text-3xl sm:text-4xl font-playfair text-brand-primary mb-4">
                     {room.name}
                   </h3>
-                  <p className="text-gray-600 font-playfair text-lg mb-6">
+                  <p className="text-gray-600 font-playfair text-lg mb-6 line-clamp-3">
                     {room.description}
                   </p>
 
                   <div className="flex flex-wrap gap-3 mb-6">
-                    {room.amenities.map((amenity) => (
+                    {room.amenities.slice(0, 3).map((amenity) => (
                       <span
                         key={amenity}
                         className="px-4 py-2 rounded-full border border-brand-secondary/30 bg-brand-sand text-brand-primary text-sm font-medium"
@@ -102,20 +85,24 @@ export default function Rooms() {
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <p className="text-2xl font-playfair text-brand-primary">{room.price}</p>
                   <div className="flex gap-4">
-                    <motion.button
-                      className="px-6 py-3 text-brand-primary border border-brand-secondary/30 rounded-full font-playfair font-semibold hover:bg-brand-accent/20 transition-colors"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      View Details
-                    </motion.button>
-                    <motion.button
-                      className="px-6 py-3 bg-brand-primary text-white rounded-full font-playfair font-semibold hover:bg-brand-secondary transition-colors shadow-lg"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Book Suite
-                    </motion.button>
+                    <Link href={`/rooms/${room.slug}`}>
+                      <motion.div
+                        className="px-6 py-3 text-brand-primary border border-brand-secondary/30 rounded-full font-playfair font-semibold hover:bg-brand-accent/20 transition-colors text-center cursor-pointer"
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        View Details
+                      </motion.div>
+                    </Link>
+                    <Link href="/booking">
+                      <motion.div
+                        className="px-6 py-3 bg-brand-primary text-white rounded-full font-playfair font-semibold hover:bg-brand-secondary transition-colors shadow-lg text-center cursor-pointer"
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Book Suite
+                      </motion.div>
+                    </Link>
                   </div>
                 </div>
               </div>

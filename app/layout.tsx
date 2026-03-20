@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageTransition from "@/components/PageTransition";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -24,7 +25,7 @@ export default function RootLayout({
     <html lang="en" className={playfairDisplay.variable}>
       <body>
         <Navbar />
-        {children}
+        <PageTransition>{children}</PageTransition>
         <Footer />
       </body>
     </html>
