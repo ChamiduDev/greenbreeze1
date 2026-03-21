@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function ContactPage() {
   return (
     <main className="bg-brand-sand min-h-screen">
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-primary via-brand-secondary to-brand-primary text-white pt-32 pb-24">
+      <section className="relative overflow-hidden bg-gradient-to-br from-brand-primary via-brand-secondary to-brand-primary text-white pt-24 pb-16 sm:pt-32 sm:pb-24">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-1/2 h-64 w-64 -translate-x-1/2 bg-brand-secondary/20 blur-3xl" />
           <div className="absolute bottom-0 right-0 h-80 w-80 translate-x-1/3 translate-y-1/3 bg-brand-secondary/15 blur-3xl" />
@@ -41,11 +41,11 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 pb-24 relative z-20 space-y-12">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 pb-24 relative z-20 space-y-10 sm:space-y-12">
         <ContactInfo />
 
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-          <form className="bg-white/90 backdrop-blur-sm rounded-[32px] border border-brand-secondary/30 p-8 space-y-6 shadow-[0_25px_60px_rgba(10,35,66,0.12)]">
+          <form className="bg-white/90 backdrop-blur-sm rounded-[32px] border border-brand-secondary/30 p-6 sm:p-8 space-y-6 shadow-[0_25px_60px_rgba(10,35,66,0.12)]">
             <div className="grid sm:grid-cols-2 gap-6">
               <Field label="Full Name">
                 <input
@@ -88,20 +88,20 @@ export default function ContactPage() {
               />
             </Field>
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4">
-              <p className="text-sm text-brand-secondary font-playfair">
+              <p className="text-sm text-brand-secondary font-playfair text-center sm:text-left">
                 Our concierge replies between 06:00–23:00 GMT+5.
               </p>
-              <button className="px-8 py-3 rounded-full bg-brand-primary text-white font-semibold shadow-[0_20px_40px_rgba(10,35,66,0.4)] hover:-translate-y-0.5 transition">
+              <button className="w-full sm:w-auto px-8 py-3 rounded-full bg-brand-primary text-white font-semibold shadow-[0_20px_40px_rgba(10,35,66,0.4)] hover:-translate-y-0.5 transition">
                 Send Message
               </button>
             </div>
           </form>
 
-          <div className="rounded-[32px] border border-brand-secondary/30 bg-gradient-to-b from-brand-primary via-brand-secondary to-brand-primary text-white p-8 space-y-6 shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
+          <div className="rounded-[32px] border border-brand-secondary/30 bg-gradient-to-b from-brand-primary via-brand-secondary to-brand-primary text-white p-6 sm:p-8 space-y-6 shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
             <p className="uppercase tracking-[0.4em] text-xs text-brand-accent">
               Visit Us
             </p>
-            <h3 className="text-3xl font-playfair">
+            <h3 className="text-2xl sm:text-3xl font-playfair">
               123 Villa Road, Kandy
             </h3>
             <p className="text-brand-white font-playfair">
@@ -145,8 +145,8 @@ type FieldProps = {
 
 function Field({ label, children }: FieldProps) {
   return (
-    <label className="space-y-2 text-sm font-medium text-brand-primary">
-      <span className="uppercase tracking-[0.3em] text-xs text-brand-secondary">
+    <label className="flex flex-col space-y-2 text-sm font-medium text-brand-primary w-full overflow-hidden">
+      <span className="uppercase tracking-[0.3em] text-xs text-brand-secondary break-words">
         {label}
       </span>
       {children}

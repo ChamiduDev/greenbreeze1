@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const kandySpots = [
@@ -17,7 +18,7 @@ const kandySpots = [
   {
     title: "Kandy Lake Walk",
     description: "Enjoy a morning or evening walk around the lake. You can see beautiful birds and enjoy the fresh air.",
-    image: "/kandy.jpg",
+    image: "/kandy_lake.png",
   },
 ];
 
@@ -84,9 +85,11 @@ export default function KandyExploration() {
         </div>
 
         <div className="text-center pt-8">
-          <button className="px-8 py-4 bg-brand-primary text-white rounded-full font-playfair font-semibold hover:-translate-y-1 transition-all shadow-lg">
-            See More Kandy Spots
-          </button>
+          <Link href="/kandy-spots">
+            <button className="px-8 py-4 bg-brand-primary text-white rounded-full font-playfair font-semibold hover:-translate-y-1 transition-all shadow-lg">
+              See More Kandy Spots
+            </button>
+          </Link>
         </div>
       </div>
     </section>

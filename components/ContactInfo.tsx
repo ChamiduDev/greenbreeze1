@@ -32,10 +32,10 @@ export default function ContactInfo() {
           transition={{ duration: 0.5, delay: index * 0.1 }}
           className="rounded-3xl border border-brand-secondary/30 bg-white/85 backdrop-blur-md p-6 shadow-[0_20px_45px_rgba(10,35,66,0.12)]"
         >
-          <p className="text-xs uppercase tracking-[0.4em] text-brand-secondary">
+          <p className="text-xs uppercase tracking-[0.4em] text-brand-secondary truncate">
             {contact.label}
           </p>
-          <p className="text-2xl font-playfair text-brand-primary my-2">
+          <p className="text-lg sm:text-xl lg:text-2xl font-playfair text-brand-primary my-2 break-all sm:break-normal">
             {contact.value}
           </p>
           <p className="text-sm text-gray-600">{contact.detail}</p>

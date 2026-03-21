@@ -71,6 +71,9 @@ export default function Rooms() {
                   </p>
 
                   <div className="flex flex-wrap gap-3 mb-6">
+                    <span className="px-4 py-2 rounded-full border border-brand-secondary/30 bg-brand-sand text-brand-primary text-sm font-medium">
+                      {room.capacity}
+                    </span>
                     {room.amenities.slice(0, 3).map((amenity) => (
                       <span
                         key={amenity}
