@@ -3,6 +3,7 @@ import { Playfair_Display } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -27,6 +28,7 @@ export default function RootLayout({
         <Navbar />
         <PageTransition>{children}</PageTransition>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );
