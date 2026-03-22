@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { rooms } from "@/data/rooms";
+import Image from "next/image";
 
 type BookingData = {
   suite: string;
@@ -15,15 +16,14 @@ type BookingData = {
   enhancements: string[];
 };
 
-const enhancements = [
-  "In-villa dining ritual",
-  "Private sunset yacht",
-  "Custom floral welcome",
-  "Poolside BBQ feast",
+const ENHANCEMENTS = [
+  { id: "ayurveda", name: "Ayurveda Treatment", price: 18000 },
+  { id: "fish", name: "Fish Therapy", price: 1000 },
+  { id: "bbq", name: "Kitchen and BBQ", price: 3000 },
+  { id: "lunch", name: "Sri Lankan Food (Lunch for 2)", price: 3000 },
 ];
 
 export default function BookingForm() {
-  const [step, setStep] = useState(0);
   const [data, setData] = useState<BookingData>({
     suite: rooms[0]?.slug ?? "",
     arrival: "",
@@ -38,268 +38,313 @@ export default function BookingForm() {
 
   const nights = useMemo(() => {
     if (!data.arrival || !data.departure) return 0;
-    const start = new Date(data.arrival).getTime();
-    const end = new Date(data.departure).getTime();
-    const diff = end - start;
-    if (diff <= 0) return 0;
-    return Math.ceil(diff / (1000 * 60 * 60 * 24));
+    const diff = new Date(data.departure).getTime() - new Date(data.arrival).getTime();
+    return diff > 0 ? Math.ceil(diff / 86400000) : 0;
   }, [data.arrival, data.departure]);
 
-  const selectedSuite = rooms.find((room) => room.slug === data.suite);
+  const selectedSuite = rooms.find((r) => r.slug === data.suite) || rooms[0];
 
-  const updateField =
-    <K extends keyof BookingData>(field: K) =>
-    (value: BookingData[K]) => {
-      setData((prev) => ({ ...prev, [field]: value }));
-    };
+  const basePrice = parseInt(selectedSuite.price.replace(/[^\d]/g, ""));
 
-  const toggleEnhancement = (value: string) => {
+  const enhancementsTotal = useMemo(
+    () =>
+      data.enhancements.reduce((sum, id) => {
+        const e = ENHANCEMENTS.find((x) => x.id === id);
+        return sum + (e?.price || 0);
+      }, 0),
+    [data.enhancements]
+  );
+
+  const totalPrice = basePrice * (nights || 1) + enhancementsTotal;
+
+  const update = <K extends keyof BookingData>(key: K, val: BookingData[K]) =>
+    setData((prev) => ({ ...prev, [key]: val }));
+
+  const toggleEnhancement = (id: string) =>
     setData((prev) => ({
       ...prev,
-      enhancements: prev.enhancements.includes(value)
-        ? prev.enhancements.filter((item) => item !== value)
-        : [...prev.enhancements, value],
+      enhancements: prev.enhancements.includes(id)
+        ? prev.enhancements.filter((x) => x !== id)
+        : [...prev.enhancements, id],
     }));
-  };
-
-  const steps = ["Journey Details", "Your Party", "Enhancements"];
 
   return (
     <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-      <form className="bg-white/90 backdrop-blur-sm rounded-[32px] border border-brand-secondary/30 p-8 space-y-8 shadow-[0_25px_60px_rgba(12,79,56,0.08)]">
-        <div className="flex flex-wrap gap-4">
-          {steps.map((label, index) => (
-            <button
-              type="button"
-              key={label}
-              className={`flex-1 min-w-[120px] rounded-full border px-4 py-2 text-sm font-semibold transition ${
-                step === index
-                  ? "bg-brand-primary text-white border-brand-primary"
-                  : "border-brand-secondary/30 text-brand-secondary hover:bg-brand-accent/10"
-              }`}
-              onClick={() => setStep(index)}
-            >
-              {label}
-            </button>
-          ))}
+      {/* ── LEFT: Form ─────────────────────────────── */}
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          alert("Booking request received! Our team will contact you shortly.");
+        }}
+        className="bg-white/90 backdrop-blur-sm rounded-[32px] border border-brand-secondary/30 p-6 sm:p-8 space-y-8 shadow-[0_25px_60px_rgba(10,35,66,0.12)]"
+      >
+        {/* Package Selection */}
+        <div className="space-y-4">
+          <p className="uppercase tracking-[0.4em] text-xs text-brand-secondary font-semibold">
+            Choose Your Package
+          </p>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {rooms.map((room) => (
+              <button
+                type="button"
+                key={room.slug}
+                onClick={() => update("suite", room.slug)}
+                className={`relative rounded-2xl border p-4 text-left transition-all duration-300 ${
+                  data.suite === room.slug
+                    ? "border-brand-secondary bg-brand-secondary/5 shadow-md"
+                    : "border-brand-secondary/20 bg-white hover:border-brand-secondary/40"
+                }`}
+              >
+                {data.suite === room.slug && (
+                  <span className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-brand-secondary" />
+                )}
+                <h4 className="font-playfair font-bold text-brand-primary text-sm leading-tight">
+                  {room.name}
+                </h4>
+                <p className="text-xs text-brand-accent font-bold mt-1">
+                  {room.price}
+                </p>
+                <p className="text-[10px] text-brand-primary/40 mt-1">
+                  {room.capacity}
+                </p>
+              </button>
+            ))}
+          </div>
         </div>
 
-        {step === 0 && (
-          <div className="space-y-6">
-            <Field label="Preferred Suite">
-              <select
-                value={data.suite}
-                onChange={(e) => updateField("suite")(e.target.value)}
-                className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3 text-brand-primary"
-              >
-                {rooms.map((room) => (
-                  <option key={room.slug} value={room.slug}>
-                    {room.name}
-                  </option>
-                ))}
-              </select>
-            </Field>
-            <div className="grid sm:grid-cols-2 gap-6">
-              <Field label="Arrival">
-                <input
-                  type="date"
-                  value={data.arrival}
-                  onChange={(e) => updateField("arrival")(e.target.value)}
-                  className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3"
-                />
-              </Field>
-              <Field label="Departure">
-                <input
-                  type="date"
-                  value={data.departure}
-                  onChange={(e) => updateField("departure")(e.target.value)}
-                  className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3"
-                />
-              </Field>
-            </div>
-            <Field label="Guests">
-              <input
-                type="number"
-                min={1}
-                max={6}
-                value={data.guests}
-                onChange={(e) =>
-                  updateField("guests")(Number(e.target.value) || 1)
-                }
-                className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3"
-              />
-            </Field>
-          </div>
-        )}
+        {/* Dates & Guests */}
+        <div className="grid sm:grid-cols-2 gap-6">
+          <Field label="Arrival Date">
+            <input
+              type="date"
+              value={data.arrival}
+              onChange={(e) => update("arrival", e.target.value)}
+              className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3 text-brand-primary focus:border-brand-secondary outline-none transition"
+            />
+          </Field>
+          <Field label="Departure Date">
+            <input
+              type="date"
+              value={data.departure}
+              onChange={(e) => update("departure", e.target.value)}
+              className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3 text-brand-primary focus:border-brand-secondary outline-none transition"
+            />
+          </Field>
+        </div>
 
-        {step === 1 && (
-          <div className="space-y-6">
-            <Field label="Full Name">
-              <input
-                type="text"
-                value={data.name}
-                onChange={(e) => updateField("name")(e.target.value)}
-                className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3"
-              />
-            </Field>
-            <div className="grid sm:grid-cols-2 gap-6">
-              <Field label="Email">
-                <input
-                  type="email"
-                  value={data.email}
-                  onChange={(e) => updateField("email")(e.target.value)}
-                  className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3"
-                />
-              </Field>
-              <Field label="Phone">
-                <input
-                  type="tel"
-                  value={data.phone}
-                  onChange={(e) => updateField("phone")(e.target.value)}
-                  className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3"
-                />
-              </Field>
-            </div>
-            <Field label="Special Notes">
-              <textarea
-                rows={4}
-                value={data.notes}
-                onChange={(e) => updateField("notes")(e.target.value)}
-                className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3"
-              />
-            </Field>
-          </div>
-        )}
+        <div className="grid sm:grid-cols-2 gap-6">
+          <Field label="Full Name">
+            <input
+              type="text"
+              placeholder="Your name"
+              value={data.name}
+              onChange={(e) => update("name", e.target.value)}
+              className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3 text-brand-primary focus:border-brand-secondary outline-none transition"
+            />
+          </Field>
+          <Field label="Guests">
+            <input
+              type="number"
+              min={1}
+              max={7}
+              value={data.guests}
+              onChange={(e) => update("guests", Number(e.target.value) || 1)}
+              className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3 text-brand-primary focus:border-brand-secondary outline-none transition"
+            />
+          </Field>
+        </div>
 
-        {step === 2 && (
-          <div className="space-y-4">
-            <p className="text-sm text-brand-secondary">
-              Select enhancements to personalize your stay.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {enhancements.map((item) => (
+        <div className="grid sm:grid-cols-2 gap-6">
+          <Field label="Email Address">
+            <input
+              type="email"
+              placeholder="your@email.com"
+              value={data.email}
+              onChange={(e) => update("email", e.target.value)}
+              className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3 text-brand-primary focus:border-brand-secondary outline-none transition"
+            />
+          </Field>
+          <Field label="Phone Number">
+            <input
+              type="tel"
+              placeholder="+94 XX XXX XXXX"
+              value={data.phone}
+              onChange={(e) => update("phone", e.target.value)}
+              className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3 text-brand-primary focus:border-brand-secondary outline-none transition"
+            />
+          </Field>
+        </div>
+
+        {/* Enhancements */}
+        <div className="space-y-4">
+          <p className="uppercase tracking-[0.4em] text-xs text-brand-secondary font-semibold">
+            Add Enhancements
+          </p>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {ENHANCEMENTS.map((item) => {
+              const active = data.enhancements.includes(item.id);
+              return (
                 <label
-                  key={item}
-                  className={`rounded-2xl border px-4 py-3 text-sm font-medium cursor-pointer transition ${
-                    data.enhancements.includes(item)
-                      ? "bg-brand-primary text-white border-brand-primary"
-                      : "border-brand-secondary/30 text-brand-secondary hover:bg-brand-accent/10"
+                  key={item.id}
+                  className={`flex items-center justify-between rounded-2xl border px-4 py-3.5 cursor-pointer transition-all duration-300 ${
+                    active
+                      ? "border-brand-secondary bg-brand-secondary/5"
+                      : "border-brand-secondary/20 bg-white hover:border-brand-secondary/40"
                   }`}
                 >
+                  <div className="flex items-center gap-3">
+                    <span
+                      className={`w-5 h-5 rounded-md border-2 flex items-center justify-center transition ${
+                        active
+                          ? "border-brand-secondary bg-brand-secondary"
+                          : "border-brand-primary/20"
+                      }`}
+                    >
+                      {active && (
+                        <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M20 6 9 17l-5-5" />
+                        </svg>
+                      )}
+                    </span>
+                    <span className="text-sm font-medium text-brand-primary">
+                      {item.name}
+                    </span>
+                  </div>
+                  <span className="text-xs font-bold text-brand-secondary whitespace-nowrap">
+                    Rs. {item.price.toLocaleString()}
+                  </span>
                   <input
                     type="checkbox"
                     className="hidden"
-                    checked={data.enhancements.includes(item)}
-                    onChange={() => toggleEnhancement(item)}
+                    checked={active}
+                    onChange={() => toggleEnhancement(item.id)}
                   />
-                  {item}
                 </label>
-              ))}
-            </div>
+              );
+            })}
           </div>
-        )}
+        </div>
 
+        {/* Notes */}
+        <Field label="Special Requests">
+          <textarea
+            rows={3}
+            placeholder="Dietary needs, celebrations, arrival time..."
+            value={data.notes}
+            onChange={(e) => update("notes", e.target.value)}
+            className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3 text-brand-primary focus:border-brand-secondary outline-none transition resize-none"
+          />
+        </Field>
+
+        {/* Submit */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4">
-          <p className="text-sm text-brand-secondary font-playfair">
-            We respond within 2 hours with tailored availability.
+          <p className="text-sm text-brand-secondary font-playfair text-center sm:text-left">
+            We respond within 2 hours.
           </p>
           <button
-            type="button"
-            className="px-6 py-3 rounded-full border border-brand-secondary/30 text-brand-primary font-semibold hover:bg-brand-accent/10 transition"
-            onClick={() => setStep(Math.max(step - 1, 0))}
-            disabled={step === 0}
-          >
-            Previous
-          </button>
-          <button
             type="submit"
-            className="px-8 py-3 rounded-full bg-brand-primary text-white font-semibold shadow-[0_20px_40px_rgba(12,79,56,0.4)] hover:-translate-y-0.5 transition"
-            onClick={(e) => {
-              e.preventDefault();
-              setStep(Math.min(step + 1, steps.length - 1));
-            }}
+            className="w-full sm:w-auto px-10 py-3.5 rounded-full bg-brand-primary text-white font-semibold shadow-[0_20px_40px_rgba(10,35,66,0.4)] hover:-translate-y-0.5 transition-all"
           >
-            {step === steps.length - 1 ? "Submit Request" : "Next Step"}
+            Send Booking Request
           </button>
         </div>
       </form>
 
-      <aside className="rounded-[32px] bg-brand-primary text-white p-8 space-y-6 shadow-[0_25px_60px_rgba(0,0,0,0.3)]">
-        <p className="text-xs uppercase tracking-[0.4em] text-brand-accent">
-          Stay Summary
+      {/* ── RIGHT: Summary ─────────────────────────── */}
+      <div className="rounded-[32px] border border-brand-secondary/30 bg-gradient-to-b from-brand-primary via-brand-secondary to-brand-primary text-white p-6 sm:p-8 space-y-6 shadow-[0_25px_60px_rgba(0,0,0,0.25)] h-fit lg:sticky lg:top-24">
+        <p className="uppercase tracking-[0.4em] text-xs text-brand-accent">
+          Booking Summary
         </p>
-        <h3 className="text-3xl font-playfair">{selectedSuite?.name}</h3>
-        <p className="text-brand-white">{selectedSuite?.tagline}</p>
+        <h3 className="text-2xl sm:text-3xl font-playfair">
+          {selectedSuite.name}
+        </h3>
 
-        <div className="grid grid-cols-3 gap-4 text-center py-4 border-y border-white/10">
-          <SummaryItem label="Arrival" value={data.arrival || "TBD"} />
-          <SummaryItem label="Nights" value={nights ? `${nights}` : "-"} />
-          <SummaryItem label="Guests" value={`${data.guests}`} />
+        {/* Selected Image */}
+        <div className="relative h-40 rounded-3xl overflow-hidden border border-white/20">
+          <Image
+            src={selectedSuite.images[0]}
+            alt={selectedSuite.name}
+            fill
+            className="object-cover"
+            sizes="400px"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+          <p className="absolute bottom-3 left-4 text-xs text-white/80 font-playfair italic">
+            {selectedSuite.tagline}
+          </p>
         </div>
 
-        <div className="space-y-3">
-          <p className="text-sm uppercase tracking-[0.3em] text-brand-accent">
-            Enhancements
-          </p>
-          {data.enhancements.length ? (
-            <ul className="space-y-2 text-brand-white">
-              {data.enhancements.map((item) => (
-                <li key={item}>• {item}</li>
-              ))}
+        {/* Key Stats */}
+        <div className="grid grid-cols-3 gap-4 text-center border-y border-white/10 py-5">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-brand-accent font-bold">Nights</p>
+            <p className="text-lg font-playfair">{nights || "—"}</p>
+          </div>
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-brand-accent font-bold">Guests</p>
+            <p className="text-lg font-playfair">{data.guests}</p>
+          </div>
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-brand-accent font-bold">Package</p>
+            <p className="text-lg font-playfair">{selectedSuite.price}</p>
+          </div>
+        </div>
+
+        {/* Enhancements Breakdown */}
+        {data.enhancements.length > 0 && (
+          <div className="space-y-3">
+            <p className="uppercase tracking-[0.4em] text-xs text-brand-accent">
+              Enhancements
+            </p>
+            <ul className="space-y-2">
+              {data.enhancements.map((id) => {
+                const item = ENHANCEMENTS.find((x) => x.id === id);
+                return (
+                  <li key={id} className="flex justify-between text-sm">
+                    <span className="text-brand-white flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
+                      {item?.name}
+                    </span>
+                    <span className="text-white/60">
+                      Rs. {item?.price.toLocaleString()}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
-          ) : (
-            <p className="text-brand-white text-sm">
-              Select bespoke touches to elevate your stay.
-            </p>
-          )}
+          </div>
+        )}
+
+        {/* Total */}
+        <div className="rounded-2xl bg-white/10 p-5">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-brand-accent font-bold mb-2">
+            Estimated Total
+          </p>
+          <p className="text-3xl sm:text-4xl font-playfair font-bold">
+            Rs. {totalPrice.toLocaleString()}
+          </p>
+          <p className="text-xs text-brand-white/50 mt-2 font-playfair">
+            {nights > 0
+              ? `${selectedSuite.price} × ${nights} night${nights > 1 ? "s" : ""}${enhancementsTotal > 0 ? ` + Rs. ${enhancementsTotal.toLocaleString()} extras` : ""}`
+              : "Select dates for full breakdown"}
+          </p>
         </div>
 
-        <div className="rounded-2xl bg-white/10 p-5 space-y-2">
-          <p className="text-sm text-brand-accent uppercase tracking-[0.3em]">
-            Estimated Rate
-          </p>
-          <p className="text-3xl font-playfair">{selectedSuite?.price}</p>
-          {nights > 1 && (
-            <p className="text-sm text-brand-white">
-              Indicative for {nights} {nights === 1 ? "night" : "nights"}. Final
-              quote shared by concierge.
-            </p>
-          )}
-        </div>
-      </aside>
+        <p className="text-xs text-brand-white/40 text-center font-playfair">
+          WiFi & attached bathrooms included with every package.
+        </p>
+      </div>
     </div>
   );
 }
 
-type FieldProps = {
-  label: string;
-  children: React.ReactNode;
-};
-
-function Field({ label, children }: FieldProps) {
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <label className="space-y-2 text-sm font-medium text-brand-primary">
-      <span className="uppercase tracking-[0.3em] text-xs text-brand-secondary">
+    <label className="flex flex-col space-y-2 text-sm font-medium text-brand-primary w-full overflow-hidden">
+      <span className="uppercase tracking-[0.3em] text-xs text-brand-secondary break-words">
         {label}
       </span>
       {children}
     </label>
   );
 }
-
-type SummaryItemProps = {
-  label: string;
-  value: string;
-};
-
-function SummaryItem({ label, value }: SummaryItemProps) {
-  return (
-    <div>
-      <p className="text-xs uppercase tracking-[0.3em] text-brand-accent">
-        {label}
-      </p>
-      <p className="text-lg font-playfair">{value}</p>
-    </div>
-  );
-}
-

@@ -5,6 +5,17 @@ import { motion } from "framer-motion";
 
 const amenities = [
   {
+    title: "Sinhala Ayurvedic Traditional Treatments",
+    description:
+      "Experience the ancient healing arts of our island. Our traditional Sinhala Ayurvedic treatments use natural oils and time-honored techniques to restore balance to your body and mind.",
+    image: "/ayur.jpg",
+    bullets: [
+      "Authentic Sinhala healing techniques",
+      "Natural herbal oils and remedies",
+      "Restores physical and mental balance",
+    ],
+  },
+  {
     title: "Large Swimming Pool",
     description:
       "Take a dip in our clean and cool swimming pool. It is perfect for a morning swim or a relaxing afternoon with your family.",
@@ -30,7 +41,7 @@ const amenities = [
     title: "Fish Therapy Pool",
     description:
       "Relax your feet in our special fish therapy pool. It is a natural and fun way to feel refreshed and happy.",
-    image: "/6.jpeg",
+    image: "/double_room/double_4.jpeg",
     bullets: [
       "Natural and calm setting",
       "Fun for the whole family",
@@ -41,12 +52,24 @@ const amenities = [
     title: "Comfortable Bedrooms",
     description:
       "Each bedroom has an attached bathroom with a hot water facility. Enjoy free WiFi and a TV in every room.",
-    image: "/room3.jpeg",
+    image: "/upper/upper_7.jpeg",
     bullets: [
       "Soft beds for a good sleep",
       "Hot and cold water",
       "Free WiFi and TV",
       "Attached private bathrooms",
+    ],
+  },
+  {
+    title: "Curated Tour Guide Services",
+    description:
+      "Explore the hidden beauty of Kandy and beyond. Our local tour guides can take you on secret nature trails, historical landmarks, and cultural journeys tailored exactly to your pace. Available upon request via contact.",
+    image: "/1.jpeg",
+    bullets: [
+      "Expert local knowledge",
+      "Historical and cultural landmarks",
+      "Secret nature trails & viewpoints",
+      "Bespoke itineraries upon request",
     ],
   },
 ];

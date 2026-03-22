@@ -15,7 +15,7 @@ const contacts = [
   },
   {
     label: "Experiences",
-    value: "curator@greenbreezevilla.com",
+    value: "curator@greenbreeze.com",
     detail: "Custom itineraries & private events",
   },
 ];

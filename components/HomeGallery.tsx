@@ -8,11 +8,17 @@ const galleryImages = [
   { src: "/3.jpeg", alt: "Signature Residence", span: "lg:col-span-2 lg:row-span-2 min-w-[300px]" },
   { src: "/6.jpeg", alt: "Fish Therapy Pool", span: "lg:col-span-1 lg:row-span-1 min-w-[280px]" },
   { src: "/2.jpeg", alt: "Traditional Cooking", span: "lg:col-span-1 lg:row-span-1 min-w-[280px]" },
+  { src: "/upper/aa.jpeg", alt: "Hilltop Panorama", span: "lg:col-span-1 lg:row-span-1 min-w-[280px]" },
   { src: "/pool.jpeg", alt: "Infinity Lap Pool", span: "lg:col-span-1 lg:row-span-1 min-w-[280px]" },
+  { src: "/upper/bb.jpeg", alt: "Cozy Living Space", span: "lg:col-span-1 lg:row-span-1 min-w-[280px]" },
   { src: "/4.jpeg", alt: "Luxury Ensuites", span: "lg:col-span-1 lg:row-span-1 min-w-[280px]" },
+  { src: "/upper/upper_1.jpeg", alt: "Upper Suite View", span: "lg:col-span-1 lg:row-span-1 min-w-[280px]" },
   { src: "/1.jpeg", alt: "Outdoor Bathing", span: "lg:col-span-1 lg:row-span-1 min-w-[280px]" },
+  { src: "/upper/cc.jpeg", alt: "Garden Terrace", span: "lg:col-span-1 lg:row-span-1 min-w-[280px]" },
   { src: "/5.jpeg", alt: "Villa Heritage", span: "lg:col-span-1 lg:row-span-1 min-w-[280px]" },
+  { src: "/upper/upper_4.jpeg", alt: "Suite Interior", span: "lg:col-span-1 lg:row-span-1 min-w-[280px]" },
   { src: "/room2.jpeg", alt: "Sanctuary Interior", span: "lg:col-span-1 lg:row-span-1 min-w-[280px]" },
+  { src: "/upper/upper_7.jpeg", alt: "Bedroom Retreat", span: "lg:col-span-1 lg:row-span-1 min-w-[280px]" },
   { src: "/room3.jpeg", alt: "Mist-Top Living", span: "lg:col-span-1 lg:row-span-1 min-w-[280px]" },
 ];
 

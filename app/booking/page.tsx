@@ -35,19 +35,15 @@ export default function BookingPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-brand-white font-playfair max-w-3xl mx-auto"
           >
-            Share your ideal dates, guests, and bespoke touches. Our concierge
-            will respond within hours with curated availability and indulgent
-            itineraries.
+            Select your package, add bespoke experiences, and our concierge
+            will respond within hours with curated availability.
           </motion.p>
         </div>
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 pb-24 relative z-20">
-        <div className="bg-white/95 backdrop-blur-md rounded-[40px] shadow-[0_40px_100px_rgba(10,35,66,0.18)] overflow-hidden border border-brand-secondary/10">
-          <BookingForm />
-        </div>
+        <BookingForm />
       </section>
     </main>
   );
 }
-

@@ -31,7 +31,7 @@ export default function Hero() {
         <div className="absolute top-[20%] -right-[5%] w-[30%] h-[30%] bg-brand-secondary/20 blur-[100px] rounded-full" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-32 pb-20 lg:pt-20 lg:pb-20 grid gap-12 lg:grid-cols-[1fr_0.8fr] items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-32 pb-20 lg:pt-40 lg:pb-24 grid gap-12 lg:grid-cols-[1fr_0.8fr] items-center">
         <div className="text-center lg:text-left space-y-8 max-w-3xl mx-auto lg:mx-0">
           <div className="space-y-4">
             <motion.p
@@ -121,7 +121,7 @@ export default function Hero() {
                 className="object-cover opacity-90"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/60 via-transparent to-transparent" />
-              
+
               <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md rounded-[32px] p-6 text-brand-primary shadow-2xl border border-white/50">
                 <div className="flex items-center justify-between gap-4 mb-3">
                   <div>
@@ -152,7 +152,7 @@ export default function Hero() {
               whileHover={{ y: -8, scale: 1.05 }}
             >
               <div className="relative h-28 sm:h-36 w-full">
-                <Image src="/6.jpeg" alt="Wellness experience" fill className="object-cover" />
+                <Image src="/fishtherapy.jpeg" alt="Wellness experience" fill className="object-cover" />
               </div>
               <div className="p-3 bg-white/95 text-center">
                 <p className="text-[9px] font-bold text-brand-secondary tracking-widest uppercase mb-1">Wellness</p>
@@ -181,7 +181,7 @@ export default function Hero() {
       </div>
 
       {/* Floating Scroll Indicator */}
-      <motion.div 
+      <motion.div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 text-[10px] tracking-[0.3em] font-bold uppercase pointer-events-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: isLoaded ? 1 : 0 }}

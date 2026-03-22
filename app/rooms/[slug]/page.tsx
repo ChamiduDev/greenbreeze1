@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { getRoomBySlug, rooms } from "@/data/rooms";
 import RoomGallery from "@/components/RoomGallery";
 import RoomHighlights from "@/components/RoomHighlights";
+import { SuiteSwitcher } from "@/components/SuiteSwitcher";
 
 type RoomPageProps = {
   params: {
@@ -79,7 +80,9 @@ export default function RoomPage({ params }: RoomPageProps) {
           </div>
         </div>
       </section>
-
+      
+      <SuiteSwitcher />
+ 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         <p className="text-gray-700 text-lg font-playfair">
           {room.description}
