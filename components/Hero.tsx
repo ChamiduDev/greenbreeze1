@@ -16,7 +16,7 @@ export default function Hero() {
     <section className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-brand-primary via-brand-secondary to-brand-primary text-white">
       <div className="absolute inset-0">
         <Image
-          src="/kandy.jpg"
+          src="/kandy_bg.png"
           alt="Kandy skyline backdrop"
           fill
           priority

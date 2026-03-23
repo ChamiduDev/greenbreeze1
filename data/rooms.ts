@@ -22,7 +22,7 @@ export const rooms: Room[] = [
     name: "Couple Package",
     tagline: "A romantic and peaceful getaway for two with breakfast included.",
     description:
-      "Our Couple Package is perfectly tailored for a quiet hilltop retreat, offering an intimate atmosphere for two. This package includes a comfortable bedroom with an attached bathroom featuring hot and cold water. Stay connected with free high-speed WiFi and start your day with a delicious local breakfast prepared with fresh ingredients, all while enjoying the serene hilltop breeze and complete access to our signature swimming pool.",
+      "Our Couple Package is perfectly tailored for a quiet hilltop retreat, offering an intimate atmosphere for two. This package includes a comfortable bedroom with an attached bathroom featuring hot and cold water. Stay connected with free high-speed WiFi and start your day with a delicious local breakfast and a refreshing welcome drink, all while enjoying the serene hilltop breeze and complete access to our signature swimming pool.",
     size: "Suite for Two",
     capacity: "2 Guests",
     beds: "1 Large Double Bed",
@@ -42,8 +42,8 @@ export const rooms: Room[] = [
         description: "Full access to the swimming pool for a refreshing stay.",
       },
       {
-        title: "Breakfast Included",
-        description: "Wake up to a delicious local breakfast prepared just for you.",
+        title: "Breakfast & Welcome Drink",
+        description: "Wake up to a delicious local breakfast and a refreshing welcome drink.",
       },
       {
         title: "Modern Comfort",
@@ -53,6 +53,7 @@ export const rooms: Room[] = [
     amenities: [
       "Large double bed",
       "Attached bathroom",
+      "Welcome Drink on arrival",
       "Swimming pool access",
       "Free high-speed WiFi",
       "TV with local channels",
@@ -67,11 +68,11 @@ export const rooms: Room[] = [
   },
   {
     slug: "full-board-package",
-    name: "Full Board Package",
-    tagline: "Total relaxation for two including all your meals and pool access.",
+    name: "Standard Package",
+    tagline: "Total relaxation for two with all meals and pool access.",
     description:
-      "Experience total relaxation and let our team handle everything. The Full Board Package for two includes a comprehensive meal plan with breakfast, lunch, and dinner, all prepared in-house featuring authentic local flavors. Guests will enjoy a spacious suite equipped with an attached bathroom and private hot water facilities. This package provides unlimited access to the swimming pool and wellness area, plus free high-speed WiFi throughout your stay for a truly restorative experience.",
-    size: "Full Board Suite",
+      "Experience total relaxation and let our team handle everything. Our Standard Package for two includes a comprehensive meal plan with breakfast, lunch, and dinner, all prepared in-house featuring authentic local flavors. Guests will also enjoy a refreshing welcome drink upon arrival. Your stay includes a spacious suite equipped with an attached bathroom and private hot water facilities. This package provides unlimited access to the swimming pool and wellness area, plus free high-speed WiFi throughout your stay.",
+    size: "Standard Suite",
     capacity: "2 Guests",
     beds: "Luxury Bedding",
     price: "Rs. 15,000",
@@ -90,7 +91,7 @@ export const rooms: Room[] = [
     highlights: [
       {
         title: "All Meals Included",
-        description: "Enjoy breakfast, lunch, and dinner prepared in-house.",
+        description: "Enjoy breakfast, lunch, and dinner plus a welcome drink.",
       },
       {
         title: "Complete Refreshment",
@@ -103,14 +104,16 @@ export const rooms: Room[] = [
     ],
     amenities: [
       "Luxury bedroom bedding",
-      "Full board dining (Breakfast, Lunch, Dinner)",
+      "All Meals (Breakfast, Lunch, Dinner)",
+      "Welcome Drink on arrival",
       "Swimming pool access",
       "Attached bathroom",
       "Free high-speed WiFi",
       "Hot water & Entertainment",
     ],
     services: [
-      "Priority meal service",
+      "Daily room cleaning",
+      "Concierge assistance",
       "Daily refreshment stock",
       "Premium linens",
       "Hilltop concierge",
@@ -118,39 +121,40 @@ export const rooms: Room[] = [
   },
   {
     slug: "full-private-villa",
-    name: "Full Private Villa",
-    tagline: "The absolute premium hilltop buyout for groups of 7.",
+    name: "Group Package (7 People)",
+    tagline: "The perfect hilltop getaway for groups of seven with breakfast included.",
     description:
-      "For the ultimate villa escape, book the entire Green Breeze property for your exclusive use. Ideal for families and groups of up to 7, this Full Board villa buyout includes breakfast, lunch, and dinner for the whole party. Your stay features complete private access to all villa facilities, including the swimming pool, BBQ area, and hilltop fire area. Each bedroom provides an attached bathroom with hot water and free WiFi, ensuring a comfortable and memorable group retreat.",
-    size: "Whole Property",
-    capacity: "Up to 7 Guests",
+      "Our Group Package is designed for exactly 7 guests, offering a comfortable and private stay on our hilltop property. This package includes breakfast and a refreshing welcome drink for the whole party. Your stay features access to villa facilities including the swimming pool, BBQ area, and hilltop fire area. Each bedroom provides an attached bathroom with hot water and free WiFi, ensuring a comfortable and memorable group retreat. Additional guests beyond 7 can be accommodated for an extra Rs. 2900 per person.",
+    size: "Common Areas & Rooms",
+    capacity: "Only for 7 People",
     beds: "3 Large Bedrooms",
     price: "Rs. 20,000",
     images: ["/room3.jpeg", "/room2.jpeg", "/pool.jpeg", "/5.jpeg"],
     highlights: [
       {
-        title: "Full Property Buyout",
-        description: "The entire villa is yours for maximum privacy.",
+        title: "Group Accommodation",
+        description: "Perfect for families and groups looking for a hilltop escape.",
       },
       {
-        title: "Group Full Board",
-        description: "Daily breakfast, lunch, and dinner included for every guest.",
+        title: "Breakfast & Welcome Drink",
+        description: "Daily breakfast and refreshing welcome drinks included.",
       },
       {
         title: "Complete Amenities",
-        description: "Private pool, fire area, BBQ, and high-speed WiFi throughout.",
+        description: "Pool access, fire area, BBQ, and high-speed WiFi throughout.",
       },
     ],
     amenities: [
-      "Entire Hilltop Villa",
-      "Private swimming pool",
-      "Full Board Meals (B, L, D)",
+      "Group Accommodation",
+      "Swimming pool access",
+      "Welcome Drink on arrival",
+      "Breakfast included",
       "Fire area for social nights",
       "BBQ facilities",
       "Attached bathrooms & WiFi",
     ],
     services: [
-      "Private property host",
+      "Property host",
       "Dedicated kitchen staff",
       "Firewood preparation",
       "Gated safe parking",

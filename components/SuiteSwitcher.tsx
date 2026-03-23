@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 
 const SUITES = [
   { name: "Couple Package", slug: "couple-package" },
-  { name: "Full Board", slug: "full-board-package" },
-  { name: "Full Villa", slug: "full-private-villa" },
+  { name: "Standard Package", slug: "full-board-package" },
+  { name: "7-Guest Package", slug: "full-private-villa" },
 ];
 
 export function SuiteSwitcher() {

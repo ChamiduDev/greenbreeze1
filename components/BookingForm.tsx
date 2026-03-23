@@ -46,6 +46,13 @@ export default function BookingForm() {
 
   const basePrice = parseInt(selectedSuite.price.replace(/[^\d]/g, ""));
 
+  const extraGuestsPrice = useMemo(() => {
+    if (selectedSuite.slug === "full-private-villa" && data.guests > 7) {
+      return (data.guests - 7) * 2900;
+    }
+    return 0;
+  }, [selectedSuite.slug, data.guests]);
+
   const enhancementsTotal = useMemo(
     () =>
       data.enhancements.reduce((sum, id) => {
@@ -55,7 +62,7 @@ export default function BookingForm() {
     [data.enhancements]
   );
 
-  const totalPrice = basePrice * (nights || 1) + enhancementsTotal;
+  const totalPrice = (basePrice + extraGuestsPrice) * (nights || 1) + enhancementsTotal;
 
   const update = <K extends keyof BookingData>(key: K, val: BookingData[K]) =>
     setData((prev) => ({ ...prev, [key]: val }));
@@ -146,11 +153,16 @@ export default function BookingForm() {
             <input
               type="number"
               min={1}
-              max={7}
+              max={20}
               value={data.guests}
               onChange={(e) => update("guests", Number(e.target.value) || 1)}
               className="w-full rounded-2xl border border-brand-secondary/30 bg-white/80 px-4 py-3 text-brand-primary focus:border-brand-secondary outline-none transition"
             />
+            {selectedSuite.slug === "full-private-villa" && data.guests > 7 && (
+              <p className="text-[10px] text-brand-secondary/80 mt-1 font-medium italic">
+                + Rs. {((data.guests - 7) * 2900).toLocaleString()} for extra guests
+              </p>
+            )}
           </Field>
         </div>
 
@@ -325,7 +337,7 @@ export default function BookingForm() {
           </p>
           <p className="text-xs text-brand-white/50 mt-2 font-playfair">
             {nights > 0
-              ? `${selectedSuite.price} × ${nights} night${nights > 1 ? "s" : ""}${enhancementsTotal > 0 ? ` + Rs. ${enhancementsTotal.toLocaleString()} extras` : ""}`
+              ? `${(basePrice + extraGuestsPrice).toLocaleString()} × ${nights} night${nights > 1 ? "s" : ""}${enhancementsTotal > 0 ? ` + Rs. ${enhancementsTotal.toLocaleString()} extras` : ""}`
               : "Select dates for full breakdown"}
           </p>
         </div>
